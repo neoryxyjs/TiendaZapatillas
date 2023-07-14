@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block lanzamientos %}active{%endblock%}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row d-flex justify-content-between">
+    <div class="col text-right">
+        <img src="{% static 'core/img/Fotos seccion zapatillas/ToutDoble_Nike_Fleece_19-06.png'%}" alt="Foto1" class="custom-img">
+    </div>
+    <div class="col text-right">
+        <img src="{% static 'core/img/Fotos seccion zapatillas/ZapasExclusivas-toutdoble-home-23-06.png' %}" alt="foto2" class="custom-img">
+    </div>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<div class="text-center">
+    <h2><strong>FILTRAR</strong></h2>
+    <form method="GET" action="">
+        <select class="form-select-lg" name="categoria">
+            <option value="">Todas las Categorias</option>
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">{{ categoria.nombreCategoria }}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-dark" type="submit">Filtrar</button>
+    </form>
+</div>
+{% for categoria,zapatillas,cantidad in zapatillas_por_categoria %}
+{% if cantidad > 0  %}
+<div style="margin-left: 35px;">
+    <h4>Zapatillas {{categoria.nombreCategoria}}(s)</h4>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        {% for zapatilla in zapatillas %}
+        <div class="col-md-4 my-3">
+            <a href="{% url 'zapatilla' id=zapatilla.id %}">
+            <div class="shoe-container">
+                {% if zapatilla.imagen %}
+                <img src="{{zapatilla.imagen.url}}" alt="Zapatilla 1" class="img-fluid">
+                {%else%}
+                <img src="{% static 'core/img/no_image_found.jpg'%}" alt="Imagen no encontrada" class="img-fluid">
+                {%endif%}
+                <div class="shoe-name">{{zapatilla.nombre}}</div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div style="margin-left: 35px;">
+    <h4>Zapatillas {{categoria.nombreCategoria}}(s)</h4>
+</div>
+<div class="container">
+    <p>No hay zapatillas de esta categoria aún.</p>
+</div>
+{% endif %} 
+
+{% endfor %}
+
+
+
+{% endblock %}

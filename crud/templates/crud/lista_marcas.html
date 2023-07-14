@@ -1,0 +1,33 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %}active{%endblock%}
+{% block contenido%}
+<div class="container p-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Marca</th>
+            <th scope="col">Creacion</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for marca in marcas %}
+            <tr>
+                <td>{{marca.id}}</td>
+                <td>{{marca.nombreMarca}}</td>
+                <td>{{marca.creacion}}</td>
+                <td>
+                    <a href="{% url 'editar_marca' idMarca=marca.id %}" class="btn btn-dark">Editar</a>
+                    <a href="{% url 'eliminar_marca' idMarca=marca.id %}" class="btn btn-dark">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <div class="text-center">
+        <a href="{% url 'nueva_marca' %}" class="btn btn-dark">Ingresar nueva marca </a>
+      </div>
+</div>
+{% endblock %}

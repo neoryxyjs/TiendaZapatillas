@@ -1,0 +1,18 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %} active {% endblock%}
+{% block contenido%}
+<div class="container">
+    <div class="row justify-content-center">
+        {% for comentario in comentarios %}
+        <div class="card my-2">
+            <div class="card-body">
+            <p><strong>{{comentario.nombre}} {{comentario.apellidoPaterno}} {{comentario.apellidoMaterno}} | {{comentario.correo}}</strong></p>
+            <p>{{comentario.comentarios}}</p>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

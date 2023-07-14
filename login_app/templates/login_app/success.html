@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block login %} active {% endblock%}
+
+{% block contenido%}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+{% endif %}
+<div class="container ">
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Bienvenido {{request.session.usuario.first_name}}!</h1>
+      <p class="lead">Eres miembro del club exclusivo de Jordan Notices!</p>
+      <hr class="my-4">
+      <div id="carouselWithControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'core/img/imagenesindex/TPgrande_Classics_05_06_2023.png'%}" class="d-block w-100 carousel-image"
+              alt="Slide 1">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'core/img/imagenesindex/touttriple_homedesktop_enviogratis.png'%}" class="d-block w-100 carousel-image"
+              alt="Slide 2">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'core/img/imagenesindex/Historia secundaria Desktop_19_06.png'%}" class="d-block w-100 carousel-image"
+              alt="Slide 3">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselWithControls" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselWithControls" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+      <p class="lead">Esperamos que disfrutes la experiencia en nuestra plataforma y recuerda que al ser miembro, tienes envio gratis.</p>
+      <a class="btn btn-dark" href="{% url 'zapatillas'%}" role="button">Ver Zapatillas</a>
+    </div>
+  </div>
+
+{% endblock %}

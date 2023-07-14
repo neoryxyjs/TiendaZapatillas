@@ -1,0 +1,27 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %} active {% endblock%}
+{% block contenido%}
+<div class="container form-container">
+    <h2 class="text-center"><strong>Marca</strong></h2>
+
+    <form  class="small-form" method="post" id="nuevaMarca">
+        {% csrf_token %}
+        <div class="d-md-block">
+            <label for="nombreMarca" class="form-label">Nombre Marca</label>
+            {{form.nombreMarca}}
+            <small id="marca_vacia" class="text-danger">Debe ingresar un nombre para la marca</small>
+            <small id="marca_muy_larga" class="text-danger">El nombre de la marca excede el largo máximo permitido</small>
+        </div>
+        <div class ="text-center m-5">
+            <button type="submit" class="btn btn-dark" onclick="validarNuevaMarca()">Registrar Marca</button>
+            <a href="{% url 'lista_marcas' %}" class="btn btn-dark">Volver</a>
+
+        </div>
+    </form>
+</div>
+<br> 
+{% block validacion %} 
+<script src="{% static 'crud/js/validacionMarca.js' %}"></script>
+{%endblock%}
+{% endblock %}

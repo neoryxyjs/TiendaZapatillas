@@ -1,0 +1,70 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %} active {% endblock%}
+{% block contenido%}
+<div class="container form-container">
+    <h2 class="text-center"><strong>Zapatilla</strong></h2>
+
+    <form  class="small-form" method="post" id="nuevaZapatilla" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="d-md-block my-2">
+            <label for="nombre" class="form-label">Nombre Zapatilla</label>
+            {{form.nombre}}
+            <small id="nombre_vacio" class="text-danger">Debe ingresar un nombre para la Zapatilla</small>
+            <small id="nombre_muy_largo" class="text-danger">El nombre de la zapatilla excede el largo máximo permitido</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="marca" class="form-label">Marca</label>
+            {{form.marca}}
+            <small id="marca_vacia" class="text-danger">Debe seleccionar la marca de la Zapatilla</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="categoria" class="form-label">Categoria</label>
+            {{form.categoria}}
+            <small id="categoria_vacia" class="text-danger">Debe seleccionar la categoria de la Zapatilla</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="precio" class="form-label">Precio</label>
+            {{form.precio}}
+            <small id="precio_vacio" class="text-danger">Debe ingresar un precio para la Zapatilla</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="encabezado" class="form-label">Encabezado</label>
+            {{form.encabezado}}
+            <small id="encabezado_vacio" class="text-danger">Debe ingresar un encabezado para la Zapatilla</small>
+            <small id="encabezado_muy_largo" class="text-danger">El encabezado de la zapatilla excede el largo máximo permitido</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            {{form.descripcion}}
+            <small id="descripcion_vacia" class="text-danger">Debe ingresar una descripcion para la Zapatilla</small>
+            <small id="descripcion_muy_larga" class="text-danger">La descripcion de la zapatilla excede el largo máximo permitido</small>
+        </div>
+        <div class="d-md-block my-2">
+            <label for="descripcion" class="form-label">Info extra 1</label>
+            {{form.info1}}
+        </div>
+        <div class="d-md-block my-2">
+            <label for="descripcion" class="form-label">Info extra 2</label>
+            {{form.info2}}
+        </div>
+        <div class="d-md-block my-2">
+            <label for="descripcion" class="form-label">Info extra 3</label>
+            {{form.info3}}
+        </div>
+        <div class="d-md-block my-2">
+            <label for="descripcion" class="form-label">Imagen (opcional)</label>
+            {{form.imagen}}
+        </div>
+        <div class ="text-center m-5">
+            <button type="submit" class="btn btn-dark" onclick="validarNuevaZapatilla()">Registrar Zapatilla</button>
+            <a href="{% url 'lista_zapatillas' %}" class="btn btn-dark">Volver</a>
+
+        </div>
+    </form>
+</div>
+<br> 
+{% block validacion %} 
+<script src="{% static 'crud/js/validacionZapatilla.js' %}"></script>
+{%endblock%}
+{% endblock %}

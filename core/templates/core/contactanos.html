@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contacto %} active {% endblock%}
+{% block contenido%}
+<div class="container form-container">
+    <h2 class="text-center">Formulario de Contacto</h2>
+    <form  class="small-form" method="post" id="infocontacto">
+        {% csrf_token %}
+        <div class="d-md-block">
+            <label for="nombre" class="form-label">Nombre</label>
+            {{form.nombre}}
+            <small id="nombre_vacio" class="text-danger">Debes ingresar tu nombre</small>
+            <small id="nombre_muy_largo" class="text-danger">El nombre excede el largo máximo permitido</small>
+            <small id="nombre_invalido" class="text-danger">El nombre es invalido</small>
+        </div>
+        <div class="mb-3">
+            <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
+            {{form.apellidoPaterno}}
+            <small id="apellidoP_vacio" class="text-danger">Debes ingresar tu apellido</small>
+            <small id="apellidoP_muy_largo" class="text-danger">El apellido excede el largo máximo permitido</small>
+            <small id="apellidoP_invalido" class="text-danger">El apellido es invalido</small>
+        </div>
+        <div class="mb-3">
+            <label for="apellido_materno" class="form-label">Apellido Materno</label>
+            {{form.apellidoMaterno}}
+            <small id="apellidoM_vacio" class="text-danger">Debes ingresar tu apellido</small>
+            <small id="apellidoM_muy_largo" class="text-danger">El apellido excede el largo máximo permitido</small>
+            <small id="apellidoM_invalido" class="text-danger">El apellido es invalido</small>
+        </div>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo Electrónico</label>
+            {{form.correo}}
+            <small id="correo_vacio" class="text-danger">Debes ingresar tu correo</small>
+            <small id="correo_invalido" class="text-danger">El correo es invalido</small>
+        </div>
+        <div class="mb-3">
+            <label for="comentarios" class="form-label">Comentarios</label>
+            {{form.comentarios}}
+            <small id="comentarios_vacio" class="text-danger">El comentario no puede estar vacio.</small>
+            <small id="comentarios_muy_largos" class="text-danger">El comentario es demasiado largo.</small>
+        
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="validarInfoContacto()">Enviar</button>
+    </form>
+</div>
+<br> 
+{% endblock %}

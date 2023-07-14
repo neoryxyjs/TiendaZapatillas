@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block horario %}active{% endblock%}
+{% block contenido%}
+<br>
+
+<div class="container text-center  p-5 espaciado">
+    <h1>OpenWeatherMap API</h1>
+    <input type="text" id="cityInput" placeholder="Ingresa una ciudad" list="autocompleteCities">
+    <datalist id="autocompleteCities"></datalist>
+    <button onclick="getWeather()">Buscar</button>
+    <div id="weatherInfo"></div>
+</div>
+<script src="{% static 'core/js/clima.js'%}"></script>
+
+
+{% endblock %}

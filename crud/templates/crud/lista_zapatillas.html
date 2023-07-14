@@ -1,0 +1,39 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %}active{%endblock%}
+{% block contenido%}
+<div class="container p-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Creación</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for zapatilla in zapatillas%}
+            <tr>
+                <td>{{zapatilla.id}}</td>
+                <td>{{zapatilla.nombre}}</td>
+                <td>{{zapatilla.marca}}</td>
+                <td>{{zapatilla.categoria}}</td>
+                <td>${{zapatilla.precio}}</td>
+                <td>{{zapatilla.creacion}}</td>
+                <td>
+                    <a href="{% url 'editar_zapatilla' idZapatilla=zapatilla.id %}" class="btn btn-dark">Editar</a>
+                    <a href="{% url 'eliminar_zapatilla' idZapatilla=zapatilla.id %}" class="btn btn-dark">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <div class="text-center">
+        <a href="{% url 'nueva_zapatilla' %}" class="btn btn-dark">Ingresar nueva zapatilla</a>
+      </div>
+</div>
+{% endblock %}

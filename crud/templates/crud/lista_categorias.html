@@ -1,0 +1,33 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block crud %}active{%endblock%}
+{% block contenido%}
+<div class="container p-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Categoria</th>
+            <th scope="col">Creacion</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias%}
+            <tr>
+                <td>{{categoria.id}}</td>
+                <td>{{categoria.nombreCategoria}}</td>
+                <td>{{categoria.creacion}}</td>
+                <td>
+                    <a href="{% url 'editar_categoria' idCategoria=categoria.id %}" class="btn btn-dark">Editar</a>
+                    <a href="{% url 'eliminar_categoria' idCategoria=categoria.id %}" class="btn btn-dark">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <div class="text-center">
+        <a href="{% url 'nueva_categoria' %}" class="btn btn-dark">Ingresar nueva categoria </a>
+      </div>
+</div>
+{% endblock %}
